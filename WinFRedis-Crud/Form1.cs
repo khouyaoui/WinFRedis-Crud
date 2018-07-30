@@ -2,13 +2,9 @@
 using ServiceStack.Redis.Generic;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Text;
+using System.Drawing;
 
 namespace WinFRedis_Crud
 {
@@ -29,12 +25,20 @@ namespace WinFRedis_Crud
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-            using (RedisClient cliente = new RedisClient("192.168.99.100", 6379))
+            try
             {
-                IRedisTypedClient<Empleado> empleado = cliente.As<Empleado>();
-                empleadoBindingSource.DataSource = empleado.GetAll();
-                Editar(true);
+                using (RedisClient cliente = new RedisClient("192.168.99.100", 6379))
+                {
+                    IRedisTypedClient<Empleado> empleado = cliente.As<Empleado>();
+                    empleadoBindingSource.DataSource = empleado.GetAll();
+                    Editar(true);
 
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
             }
         }
 
@@ -55,10 +59,12 @@ namespace WinFRedis_Crud
 
         private void btnAnadir_Click(object sender, EventArgs e)
         {
+            Limpiar();
             empleadoBindingSource.Add(new Empleado());
             empleadoBindingSource.MoveLast();
             Editar(false);
             textId.Focus();
+
         }
 
         private void btnEditar_Click(object sender, EventArgs e)
@@ -81,22 +87,30 @@ namespace WinFRedis_Crud
 
         private void btnBorrar_Click(object sender, EventArgs e)
         {
-            if (MetroFramework.MetroMessageBox.Show(this, "Estas seguro de que vas a borrar el " +
-                "registro!", "Mensaje", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == 
-                DialogResult.Yes)
+            try
             {
-                Empleado em = empleadoBindingSource.Current as Empleado;
-                if (em != null)
+                if (MetroFramework.MetroMessageBox.Show(this, "Estas seguro de que vas a borrar el " +
+                        "registro!", "Mensaje", MessageBoxButtons.YesNo, MessageBoxIcon.Question) ==
+                        DialogResult.Yes)
                 {
-                    using (RedisClient cliente = new RedisClient("192.168.99.100", 6379))
+                    Empleado em = empleadoBindingSource.Current as Empleado;
+                    if (em != null)
                     {
-                        IRedisTypedClient<Empleado> empleado = cliente.As<Empleado>();
-                        empleado.DeleteById(em.ID);
-                        empleadoBindingSource.RemoveCurrent();
-                        Limpiar();
+                        using (RedisClient cliente = new RedisClient("192.168.99.100", 6379))
+                        {
+                            IRedisTypedClient<Empleado> empleado = cliente.As<Empleado>();
+                            empleado.DeleteById(em.ID);
+                            empleadoBindingSource.RemoveCurrent();
+                            Limpiar();
 
+                        }
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
             }
         }
         void Limpiar()
@@ -108,18 +122,29 @@ namespace WinFRedis_Crud
             textCargo.Text = string.Empty;
         }
             private void btnGuardar_Click(object sender, EventArgs e)
-        {
-            using (RedisClient cliente = new RedisClient("192.168.99.100", 6379))
             {
-                empleadoBindingSource.EndEdit();
-                
-                IRedisTypedClient<Empleado> empleado = cliente.As<Empleado>();
-                empleado.StoreAll(empleadoBindingSource.DataSource as List<Empleado>);
-                    MetroFramework.MetroMessageBox.Show(this, "Datos guardados.", "Mensaje", 
+            try
+            {
+                using (RedisClient cliente = new RedisClient("192.168.99.100", 6379))
+                {
+                    empleadoBindingSource.EndEdit();
+
+                    IRedisTypedClient<Empleado> empleado = cliente.As<Empleado>();
+                    empleado.StoreAll(empleadoBindingSource.DataSource as List<Empleado>);
+                    MetroFramework.MetroMessageBox.Show(this, "Datos guardados.", "Mensaje",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    //Limpiar();
+                    Editar(true);
 
 
+
+                }
             }
-        }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            }
     }
 }

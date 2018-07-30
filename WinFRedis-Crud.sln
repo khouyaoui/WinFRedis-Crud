@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27703.2042
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinFRedis-Crud", "WinFRedis-Crud\WinFRedis-Crud.csproj", "{FA9458C4-38CA-41C3-9437-BE27B9A112F6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinFRedis-CrudTests", "WinFRedis-CrudTests\WinFRedis-CrudTests.csproj", "{475C5538-A511-4865-99AD-46BCAFC50A1D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{FA9458C4-38CA-41C3-9437-BE27B9A112F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FA9458C4-38CA-41C3-9437-BE27B9A112F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FA9458C4-38CA-41C3-9437-BE27B9A112F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{475C5538-A511-4865-99AD-46BCAFC50A1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{475C5538-A511-4865-99AD-46BCAFC50A1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{475C5538-A511-4865-99AD-46BCAFC50A1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{475C5538-A511-4865-99AD-46BCAFC50A1D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

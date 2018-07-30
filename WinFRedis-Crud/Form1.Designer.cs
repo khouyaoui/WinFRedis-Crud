@@ -29,7 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Grid = new System.Windows.Forms.DataGridView();
+            this.Cargo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.textId = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -45,32 +46,37 @@
             this.btnGuardar = new System.Windows.Forms.Button();
             this.textCargo = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.Cargo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.empleadoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.apellidosDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dniDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Grid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.empleadoBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // Grid
             // 
-            this.dataGridView1.AutoGenerateColumns = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Grid.AutoGenerateColumns = false;
+            this.Grid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.Grid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.iDDataGridViewTextBoxColumn,
             this.nombreDataGridViewTextBoxColumn,
             this.apellidosDataGridViewTextBoxColumn,
             this.dniDataGridViewTextBoxColumn,
             this.Cargo});
-            this.dataGridView1.DataSource = this.empleadoBindingSource;
-            this.dataGridView1.Location = new System.Drawing.Point(206, 57);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(539, 299);
-            this.dataGridView1.TabIndex = 0;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.Grid.DataSource = this.empleadoBindingSource;
+            this.Grid.Location = new System.Drawing.Point(206, 57);
+            this.Grid.Name = "Grid";
+            this.Grid.Size = new System.Drawing.Size(539, 328);
+            this.Grid.TabIndex = 0;
+            this.Grid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            // 
+            // Cargo
+            // 
+            this.Cargo.DataPropertyName = "Cargo";
+            this.Cargo.HeaderText = "Cargo";
+            this.Cargo.Name = "Cargo";
             // 
             // textId
             // 
@@ -209,12 +215,6 @@
             this.label5.TabIndex = 15;
             this.label5.Text = "Cargo:";
             // 
-            // Cargo
-            // 
-            this.Cargo.DataPropertyName = "Cargo";
-            this.Cargo.HeaderText = "Cargo";
-            this.Cargo.Name = "Cargo";
-            // 
             // empleadoBindingSource
             // 
             this.empleadoBindingSource.DataSource = typeof(WinFRedis_Crud.Empleado);
@@ -247,7 +247,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(781, 398);
+            this.ClientSize = new System.Drawing.Size(781, 423);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.textCargo);
             this.Controls.Add(this.btnGuardar);
@@ -263,11 +263,11 @@
             this.Controls.Add(this.textNombre);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textId);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.Grid);
             this.Name = "Form1";
             this.Text = "Empleados";
             this.Load += new System.EventHandler(this.Form1_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Grid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.empleadoBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -276,7 +276,7 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView Grid;
         private System.Windows.Forms.TextBox textId;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
